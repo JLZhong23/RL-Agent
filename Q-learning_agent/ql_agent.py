@@ -13,7 +13,7 @@ import random
 parser = argparse.ArgumentParser()
 parser.add_argument('-g', type=float, default=0.8, dest='gamma')
 parser.add_argument('-s', type=int, default=1000, dest='step_num')
-parser.add_argument('-e', type=float, default=0.0, dest='epsilon')
+parser.add_argument('-e', type=float, default=1.0, dest='epsilon')
 args = parser.parse_args()
 
 reward = [[0, -1, 0, -1, 0, 0],
@@ -27,7 +27,7 @@ step = 0
 while step < args.step_num:
     s = random.randint(1, 5)
     while s != 0:
-        if random.random() >= args.epsilon:
+        if random.random() < args.epsilon:
             action_list = [x for x in range(6) if reward[s][x] != 0]
             s2 = random.choice(action_list)
         else:
