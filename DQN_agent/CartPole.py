@@ -115,6 +115,8 @@ for episode in range(episode_num):
             break
         s = s_
 
+env.close()
+
 torch.save({
     "eval_net": dqn.eval_net.state_dict(),
     "target_net": dqn.target_net.state_dict(),
